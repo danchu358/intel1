@@ -13,8 +13,7 @@ int main()
     int x = -7;
     printf("%d의 제곱 : %d\n", x ,SQUARE(x));
     printf("%d의 절댓값 : %d\n", x, ABS(x));
-    printf("%d의 절댓값 : %d\n", x, ABS(x));
-    printf("%d의 절댓값 : %d\n", x, ABS(x));
+
 
 }
 
