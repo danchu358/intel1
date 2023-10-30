@@ -31,6 +31,8 @@ public:
     int x;
     int y;
 
+    Point(){} // null argument 허용하는 생성자
+
     Point(int x1, int y1)
     {
         x = x1; y = y1;
@@ -79,7 +81,7 @@ int main()
         p1.x, p1.y, p2.x, p2.y, d);
 
     int a = p1.Area(p2);
-    printf("두 점 p1(%d, %d) p2(%d %d)의 넓이는 %d 입니다.\n\n",
+    printf("두 점 p1(%d, %d) p2(%d %d)의 넓이는 %d 입니다.\n",
         p1.x, p1.y, p2.x, p2.y, a);
 }
 
