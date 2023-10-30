@@ -79,7 +79,8 @@ int main()
         p1.x, p1.y, p2.x, p2.y, d);
 
     int a = p1.Area(p2);
-    printf("사각형의 넓이는%d 입니다.\n", a);
+    printf("두 점 p1(%d, %d) p2(%d %d)의 넓이는 %d 입니다.\n\n",
+        p1.x, p1.y, p2.x, p2.y, a);
 }
 
 //double Dist(Point2D p1, Point2D p2) //두 점간의 거리
