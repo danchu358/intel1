@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleApplication2", "ConsoleApplication2.vcxproj", "{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{B6018361-5F3A-4323-9205-2F63D08596C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}.Debug|x64.ActiveCfg = Debug|x64
+		{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}.Debug|x64.Build.0 = Debug|x64
+		{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}.Debug|x86.ActiveCfg = Debug|Win32
+		{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}.Debug|x86.Build.0 = Debug|Win32
+		{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}.Release|x64.ActiveCfg = Release|x64
+		{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}.Release|x64.Build.0 = Release|x64
+		{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}.Release|x86.ActiveCfg = Release|Win32
+		{80FBBFDD-BC51-4C68-9E0E-14F87FBF5A49}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30B5F162-61B8-484D-898B-1823489A538B}
+	EndGlobalSection
+EndGlobal
