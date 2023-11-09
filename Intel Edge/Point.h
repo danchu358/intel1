@@ -2,6 +2,7 @@
 //#include <corecrt_math.h>
 //extern double sqrt(double);
 #include <iostream>
+#define ABS(x) (((x)<0)?()-(x)):((x)))
 
 class Point
 {
@@ -20,6 +21,9 @@ public:
 	int& X() { return x; }; // 프라이빗 접근자 맴버 변수 에서 퍼블릭 접근자로 바꾸는 함수
 	int& Y() { return y; }; //프라이빗 접근자 맴버 변수 에서 퍼블릭 접근자로 바꾸는 함수
 	Point& operator+(Point p);
+	Point& operator++(); // 선행연산자
+	Point& operator++(int); // 후행연산자
+	double operator*(Point p);
 };
 
 class Point3D : public Point    // 클래스 상속 정의

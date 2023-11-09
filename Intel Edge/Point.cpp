@@ -27,8 +27,25 @@ Point& Point::MoveP(int dx, int dy)
 }
 Point& Point::operator+(Point p)  // 두점 CurP와 p의 + 연산결과를 (새로운 Point로) 반환
 {
-	Point *p1 = new Point(x + p.x, y + p.y); // new는 무조건 포인터 키워드, 새로운 공간 확보해서 변수 설정해준 것
+	Point *p1 = new Point(x + p.x, y + p.y); // new는 포인터 키워드, 새로운 공간 확보해서 변수 설정해준 것
 	return *p1;
+}
+Point& Point::operator++()  // 객체 선행 연산자 오버로딩
+{
+	++x; ++y;
+	return *this;
+}
+Point& Point::operator++(int)  // 객체 후행 연산자 오버로딩
+{
+	Point* p1 = new Point(x++, y++); // new는 포인터 키워드, 새로운 공간 확보해서 변수 설정해준 것
+	return *p1;
+}
+double Point::operator*(Point p)
+{
+	double w = abs(x - p.x);
+	double h = abs(y - p.y);
+	double a = w * h;
+	return a;
 }
 Point3D& Point3D::SetP(Point3D p)
 {
