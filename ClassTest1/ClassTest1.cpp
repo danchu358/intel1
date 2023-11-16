@@ -7,7 +7,7 @@ public:
     {
         printf("First\n");
     }
-    ~virtual First()
+    virtual ~First()
     {
         printf("~First\n");
     }
