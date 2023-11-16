@@ -16,7 +16,7 @@ void Point::showEx(const char* s)  // 디폴트 값은 프로토타입에만 지정
 }
 Point& Point::operator+(Point p)  // 두점 CurP와 p의 + 연산결과를 (새로운 Point로) 반환
 {
-	Point* p1 = new Point(x + p.x, y + p.y); // new는 포인터 키워드, 새로운 공간 확보해서 변수 설정해준 것
+	p1 = (new Point(x + p.x, y + p.y));
 	return *p1;
 }
 Rect& Rect::show(const char* s)  // RECT(P1(x1, y1), P2(x2, y2))
