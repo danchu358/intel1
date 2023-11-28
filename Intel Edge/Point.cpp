@@ -47,8 +47,8 @@ double Point::operator*(Point p)
 	double a = w * h;
 	return a;
 }
-Point3D& Point3D::SetP(Point3D p)
-{
-	X() = p.X(); Y() = p.Y(); z = p.z;
-	return *this;
-}
+//Point3D& Point3D::SetP(Point3D p)
+//{
+//	X() = p.X(); Y() = p.Y(); z = p.z;
+//	return *this;
+//}

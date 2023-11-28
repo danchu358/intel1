@@ -4,26 +4,27 @@
 #include <iostream>
 #define ABS(x) (((x)<0)?()-(x)):((x)))
 
+template <typename T>
 class Point
 {
 private:
-	int x;
-	int y;
+	T x;
+	T y;
 
 public:
-	Point(int x1 = 0, int y1 = 0) : x(x1), y(y1){}
+	Point<T>(T x1 = 0, T y1 = 0) : x(x1), y(y1) {}
 
-	Point& SetP(Point P);   // Self-Reference
-	Point& SetP(int x, int y);
-	Point& MoveP(int off_x, int off_y); // Move Point position
-	double Dist(Point p);  // Distance
-	void viewP(const char * s = NULL); // View Current Point
+	Point<T>& SetP(Point<T> P);   // Self-Reference
+	Point<T>& SetP(T x, T y);
+	Point<T>& MoveP(T off_x, T off_y); // Move Point position
+	double Dist(Point<T> p);  // Distance
+	void viewP(const char* s = NULL); // View Current Point
 	int& X() { return x; }; // 프라이빗 접근자 맴버 변수 에서 퍼블릭 접근자로 바꾸는 함수
 	int& Y() { return y; }; //프라이빗 접근자 맴버 변수 에서 퍼블릭 접근자로 바꾸는 함수
-	Point& operator+(Point p);
-	Point& operator++(); // 선행연산자
-	Point& operator++(int); // 후행연산자
-	double operator*(Point p);
+	Point<T>& operator+(Point<T> p);
+	Point<T>& operator++(); // 선행연산자
+	Point<T>& operator++(T); // 후행연산자
+	double operator*(Point<T> p);
 };
 
 //class Point3D : public Point    // 클래스 상속 정의

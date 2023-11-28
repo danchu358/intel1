@@ -24,11 +24,11 @@ int main()
 	printf("Point [Operator++] 후행연산Test..."); p6++.viewP("_p6");
 	printf("Point [Operator++] 선행연산 Test..."); (++p6).viewP("_p6");
 
-	Point3D pp0, pp1(10, 20, 30);
-	double d3 = pp0.Dist3D(pp1);
-	double d2 = pp0.Dist(Point(10, 20));  // 하위 클래스인데 상위 클래스 상속을 통해서 거리계산이 가능하다 
-	printf("pp0(0, 0, 0) 과 pp1 (10, 20, 30)의 거리는 %f\n", d3);
-	printf("pp0(0, 0, 0) 과 p1 (10, 20) 의 거리는 %f\n", d2);
+	//Point3D pp0, pp1(10, 20, 30);
+	//double d3 = pp0.Dist3D(pp1);
+	//double d2 = pp0.Dist(Point(10, 20));  // 하위 클래스인데 상위 클래스 상속을 통해서 거리계산이 가능하다 
+	//printf("pp0(0, 0, 0) 과 pp1 (10, 20, 30)의 거리는 %f\n", d3);
+	//printf("pp0(0, 0, 0) 과 p1 (10, 20) 의 거리는 %f\n", d2);
 	//p1.viewP("p1"); p2.viewP("p2"); p3.viewP("p3");
 }
 
