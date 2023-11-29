@@ -19,8 +19,8 @@ public:
 	Point<T>& MoveP(T off_x, T off_y); // Move Point position
 	double Dist(Point<T> p);  // Distance
 	void viewP(const char* s = NULL); // View Current Point
-	int& X() { return x; }; // 프라이빗 접근자 맴버 변수 에서 퍼블릭 접근자로 바꾸는 함수
-	int& Y() { return y; }; //프라이빗 접근자 맴버 변수 에서 퍼블릭 접근자로 바꾸는 함수
+	T& X() { return x; }; // 프라이빗 접근자 맴버 변수 에서 퍼블릭 접근자로 바꾸는 함수
+	T& Y() { return y; }; //프라이빗 접근자 맴버 변수 에서 퍼블릭 접근자로 바꾸는 함수
 	Point<T>& operator+(Point<T> p);
 	Point<T>& operator++(); // 선행연산자
 	Point<T>& operator++(T); // 후행연산자

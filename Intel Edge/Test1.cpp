@@ -1,13 +1,13 @@
 ﻿#include <iostream>
-#include "Point.h"
+#include "template.h"
 
 int main()
 {
-	Point p1(10, 10), p2, p3;
+	Point<int> p1(10, 10), p2, p3;
 	p1.viewP("p1"); p2.viewP(); p3.viewP();
-	Point p4 = p3, p5(p2);
+	Point<int> p4 = p3, p5(p2);
 	
-	p2.SetP(Point(20, 30)).viewP("p2");
+	p2.SetP(Point<int>(20, 30)).viewP("p2");
 	p3.SetP(40, 70).viewP("p3");
 	printf("p2와 p3의 좌표로 계산되는 면적 : %.2f\n", p2 * p3);
 	/*printf("Point Move Test.....\n");
@@ -19,7 +19,7 @@ int main()
 	p1.X() = 10; p1.Y() = 10;
 	printf("Point Ref.Access print Test..."); p1.viewP("p1");*/
 
-	Point p6 = p2 + p1;
+	Point<T> p6 = p2 + p1;
 	printf("Point [Operator+] Test..."); p6.viewP("_p6");
 	printf("Point [Operator++] 후행연산Test..."); p6++.viewP("_p6");
 	printf("Point [Operator++] 선행연산 Test..."); (++p6).viewP("_p6");
