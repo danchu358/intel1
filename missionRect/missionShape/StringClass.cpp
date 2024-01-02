@@ -1,108 +1,132 @@
 #include <iostream>
-using namespace std;
+#include <cstring>
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable : 4996)
 
 class String {
 private:
-    int* arr;
-    int Len;
+    char* str;
+    int length;
+
 public:
-    String(int size) : Len(size)
-    {
-        arr = new int[size];
+    String() : str(nullptr), length(0) {}
+    String(const char* s) : length(strlen(s)) {
+        str = new char[length + 1];
+        strcpy(str, s);
     }
-    ~String()
-    {
-        delete arr;
+
+    ~String() {
+        delete[] str;
     }
-    int length()
-    {
-        return Len;
+
+    String(const String& other) : length(other.length) {
+        str = new char[length + 1];
+        strcpy(str, other.str);
     }
-    int& operator[](int idx)
-    {
-        if (idx < 0 || idx > Len - 1)
-        {
-            cout << "Out of bound\n"; exit(1);
+
+    String& operator=(const String& other) {
+        if (this != &other) {
+            delete[] str;
+            length = other.length;
+            str = new char[length + 1];
+            strcpy(str, other.str);
         }
-        return arr[idx];
-    }
-    String& operator+(String& br)
-    {
-        int l = Len + br.length();
-        String* cr = new String(l);
-        memcpy(cr->arr, arr, Len * sizeof(int));
-        memcpy(cr->arr + Len, br.arr, br.length() * sizeof(int));
-        return *cr;
-    }
-    String& append(String& br)
-    {
-        int l = Len + br.length();
-        String* cr = new String(l);
-        memcpy(cr->arr + Len, br.arr, br.length() * sizeof(int));
-        delete arr;
-        Len += br.length() * sizeof(int);
         return *this;
     }
-    String& operator+=(String& br)
-    {
-        return this->append(br);
-    }
-    String& operator-=(int idx)
-    {
-        if (idx < 0 || idx > Len - 1)
-        {
-            cout << "Out of bound\n";
-            exit(1);
-        }
 
-        char* subStr = new char[idx + 1]; // 부분 문자열을 저장할 새로운 배열
-        for (int i = 0; i < idx; i++) {
-            subStr[i] = arr[i]; // 원본 문자열에서 부분 복사
-        }
-        subStr[idx] = '\0'; // 문자열의 끝을 나타내는 null 문자 추가
-
-        String result = *subStr;
-        delete[] subStr;       // 임시 배열 메모리 해제
-
+    String operator+(const String& other) const {
+        String result;
+        result.length = length + other.length;
+        result.str = new char[result.length + 1];
+        strcpy(result.str, str);
+        strcat(result.str, other.str);
         return result;
     }
-    bool operator==(String& br)
-    {
-        if (Len != br.Len) {
-            cout << "Error" << endl;
-            return false;
-        }
-        for (int i = 0; i < Len; i++) {
-            if (arr[i] != br[i])
-                return false;
-        }
-        return true;
-    }
-    friend ostream& operator<<(ostream& os, String& ar)
-    {
-        int i;
-        printf("{ ");
-        for (i = 0; i < ar.Len - 1; i++)
-            cout << ar.arr[i] << ", ";
-        cout << ar.arr[i];
-        printf(" }");
+
+    friend std::ostream& operator<<(std::ostream& os, const String& s) {
+        os << s.str;
         return os;
+    }
+
+    bool operator!=(const String& other) const {
+        return strcmp(str, other.str) != 0;
+    }
+
+    bool operator==(const String& other) const {
+        return strcmp(str, other.str) == 0;
+    }
+
+    String& operator+=(const String& other) {
+        char* newStr = new char[length + other.length + 1];
+        strcpy(newStr, str);
+        strcat(newStr, other.str);
+        delete[] str;
+        str = newStr;
+        length += other.length;
+        return *this;
+    }
+
+    int find(const String& target) const {
+        char* ptr = strstr(str, target.str);
+        if (ptr == nullptr) {
+            return -1;
+        }
+        return ptr - str;
+    }
+
+    String substr(int start, int count) const {
+        if (start < 0 || start >= length || count <= 0) {
+            return String();
+        }
+        if (start + count > length) {
+            count = length - start;
+        }
+        char* subStr = new char[count + 1];
+        strncpy(subStr, str + start, count);
+        subStr[count] = '\0';
+        return String(subStr);
+    }
+
+    String replace(const String& target, const String& replacement) const {
+        String result(*this);
+        int pos = result.find(target);
+        while (pos != -1) {
+            result = result.substr(0, pos) + replacement + result.substr(pos + target.length, result.length - pos - target.length);
+            pos = result.find(target);
+        }
+        return result;
     }
 };
 
-int main()
-{
-    string s1 = "안녕하세요";
-    string s2 = "잘지내시나요";
-    cout << s1 << "\n";
-    cout << s2 << "\n";
-    cout << s1 + s2 << "\n";
-    
-    string s3 = s1 + s2;
-    cout << (s1 += s2) << "\n";
-    cout << s3 << "\n";
+int main() {
+    String s1("Hello");
+    String s2("World");
 
-    const char* a = "anasdfedfhge\n";
-    string b = a -= 3;
-    cout << b << "\n";
+    String s3 = s1 + " " + s2;
+    std::cout << "s3: " << s3 << std::endl;
+
+    String s4 = "Hello";
+    std::cout << "s4: " << s4 << std::endl;
+
+    std::cout << "s4 != s3: " << (s4 != s3) << std::endl;
+    std::cout << "s4 == s3: " << (s4 == s3) << std::endl;
+
+    s4 += " C++";
+    std::cout << "s4 += \" C++\": " << s4 << std::endl;
+
+    int pos = s3.find("World");
+    if (pos != -1) {
+        std::cout << "Found 'World' at position " << pos << std::endl;
+    }
+    else {
+        std::cout << "Not found 'World'" << std::endl;
+    }
+
+    String s5 = s3.substr(6, 5);
+    std::cout << "s5: " << s5 << std::endl;
+
+    String s6 = s3.replace("World", "C++");
+    std::cout << "s6: " << s6 << std::endl;
+
+    return 0;
 }

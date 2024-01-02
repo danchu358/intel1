@@ -1,70 +1,66 @@
 #include <iostream>
+#include <string>
+
 using namespace std;
 
 class Employee {
 protected:
-    char* Name = NULL;  // char 1byte, 한글은 2byte
-public:
-    int Age;
+    string name;
+    int employeeId;
 
-    Employee(const char* name, int age) : Age(age) {
-        rename(Name);
-    }
-    ~Employee()
-    {
-        if (Name) delete Name;
-    }
-    Employee& rename(const char* name)
-    {
-        if (Name) delete Name;
-        Name = new char[strlen(name) + 1];
-        strcpy(Name, name);
-        return *this;
-    }
-    void Show()
-    {
-        printf("%s(%d)\n", Name, Age);
+public:
+    Employee(string name, int employeeId) : name(name), employeeId(employeeId) {}
+
+    virtual void displayInfo() {
+        cout << "직원 이름: " << name << endl;
+        cout << "직원 ID: " << employeeId << endl;
     }
 };
 
 class Manager : public Employee {
-    char* Position = NULL;
+private:
+    int numberOfSubordinates;
+
 public:
-    Manager(const char* Name, int age, const char* position)
-        : Employee(Name, age)
-    {
-        rePosition(position);
-    }
-    ~Manager()
-    {
-        if (Position) delete Position;
-    }
-    Manager& rePosition(const char* position)
-    {
-        if (Position) delete Position;
-        Position = new char[strlen(position) + 1];
-        strcpy(Position, position);
-        return *this;
+    Manager(string name, int employeeId, int numberOfSubordinates)
+        : Employee(name, employeeId), numberOfSubordinates(numberOfSubordinates) {}
+
+    void displayInfo() override {
+        Employee::displayInfo();
+        cout << "직원 수: " << numberOfSubordinates << endl;
     }
 };
 
 class Developer : public Employee {
-    char* Language = NULL;
+private:
+    string programmingLanguage;
+
 public:
-    Developer(const char* Name, int age, const char* language)
-        : Employee(Name, age)
-    {
-        rename(language);
-    }
-    ~Developer()
-    {
-        if (Language) delete Language;
-    }
-    Developer& addLanguage(const char* language)
-    {
-        if (Language) delete Language;
-        Language = new char[strlen(Language) + strlen(language) + 1];
-        strcpy(Language, language);
-        return *this;
+    Developer(string name, int employeeId, string programmingLanguage)
+        : Employee(name, employeeId), programmingLanguage(programmingLanguage) {}
+
+    void displayInfo() override {
+        Employee::displayInfo();
+        cout << "프로그래밍 언어: " << programmingLanguage << endl;
     }
 };
+
+int main() {
+    Employee emp("홍길동", 1001);
+    Manager manager("김매니저", 2001, 5);
+    Developer developer("이개발자", 3001, "C++");
+
+    cout << "Employee 정보:" << endl;
+    emp.displayInfo();
+    cout << endl;
+
+    cout << "Manager 정보:" << endl;
+    manager.displayInfo();
+    cout << endl;
+
+    cout << "Developer 정보:" << endl;
+    developer.displayInfo();
+    cout << endl;
+
+    return 0;
+}

@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 
 template <typename T>
-void Swap(T &a, T &b)
+void Swap(T& a, T& b)
 {
     T c = a;
     a = b;
