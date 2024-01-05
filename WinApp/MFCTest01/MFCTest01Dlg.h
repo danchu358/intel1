@@ -11,7 +11,6 @@ class CMFCTest01Dlg : public CDialogEx
 // 생성입니다.
 public:
 	CMFCTest01Dlg(CWnd* pParent = nullptr);	// 표준 생성자입니다.
-
 // 대화 상자 데이터입니다.
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_MFCTEST01_DIALOG };
@@ -32,12 +31,10 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedButton1();
 	afx_msg void TestFunc();
 	// 버튼 콘트롤에 변수명 추가
 	CButton btnTest;
 	afx_msg void OnEnChangeEdit1();
 	// Edit 콘트롤을 이용한 간단한 메모
 	CEdit Memo;
-	afx_msg void OnChangeEdit1();
 };

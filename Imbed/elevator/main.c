@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "fnd_v5.h"
 
 int main()
@@ -40,3 +41,47 @@ int main()
      return 0;
 }
 
+=======
+#include "fnd_v5.h"
+
+int main()
+{
+     wiringPiSetupGpio();
+     xio = wiringPiI2CSetup(I2C_ADDR);
+
+     printf("FND 7 Segment Start\n");
+     digiOff();
+     segOff();
+
+     setupPins();
+
+     while (1) {
+         digitalWrite(diginum[0], HIGH);
+         numlist[0][0];
+         seg_0();
+         delay(1);
+         digiOff();
+         segOff();
+
+         digitalWrite(diginum[1], HIGH);
+         seg_1();
+         delay(1);
+         digiOff();
+         segOff();
+ 
+         digitalWrite(diginum[2], HIGH);
+         seg_0();
+         delay(1);
+         digiOff();
+         segOff();
+ 
+         digitalWrite(diginum[3], HIGH);
+         seg_1();
+         delay(1);
+         digiOff();
+         segOff();
+      }
+     return 0;
+}
+
+>>>>>>> 6c2513a3afce1b7fe07fe8e435bdf28235ffc650

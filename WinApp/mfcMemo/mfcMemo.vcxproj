@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
-    <ProjectGuid>{2C743FA4-FD67-452F-B164-A7B79884E668}</ProjectGuid>
+    <ProjectGuid>{BDC84F41-3A1B-4901-AA36-FE691CC79C05}</ProjectGuid>
     <Keyword>MFCProj</Keyword>
-    <RootNamespace>MFCTest01</RootNamespace>
+    <RootNamespace>mfcMemo</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -45,7 +45,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -90,7 +90,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -183,16 +183,20 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CmfcFindDlg.h" />
+    <ClInclude Include="CmfcReplace.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="MFCTest01.h" />
-    <ClInclude Include="MFCTest01Dlg.h" />
+    <ClInclude Include="mfcMemo.h" />
+    <ClInclude Include="mfcMemoDlg.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MFCTest01.cpp" />
-    <ClCompile Include="MFCTest01Dlg.cpp" />
+    <ClCompile Include="CmfcFindDlg.cpp" />
+    <ClCompile Include="CmfcReplace.cpp" />
+    <ClCompile Include="mfcMemo.cpp" />
+    <ClCompile Include="mfcMemoDlg.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -201,13 +205,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MFCTest01.rc" />
+    <ResourceCompile Include="mfcMemo.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\MFCTest01.rc2" />
+    <None Include="res\mfcMemo.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\MFCTest01.ico" />
+    <Image Include="res\mfcMemo.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

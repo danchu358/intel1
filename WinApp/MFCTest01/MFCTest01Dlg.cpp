@@ -48,6 +48,8 @@ END_MESSAGE_MAP()
 
 // CMFCTest01Dlg 대화 상자
 
+
+
 CMFCTest01Dlg::CMFCTest01Dlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_MFCTEST01_DIALOG, pParent)
 {
@@ -66,7 +68,7 @@ BEGIN_MESSAGE_MAP(CMFCTest01Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDYES, &CMFCTest01Dlg::TestFunc)
-	ON_EN_CHANGE(IDC_EDIT1, &CMFCTest01Dlg::OnChangeEdit1)
+	ON_EN_CHANGE(IDC_EDIT1, &CMFCTest01Dlg::OnEnChangeEdit1)
 END_MESSAGE_MAP()
 
 
@@ -155,8 +157,8 @@ HCURSOR CMFCTest01Dlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-CString ToUpper(CString s)  // 소문자 ==> 대문자  xx1x xxxx ==> xx0x xxxx
-										      // 1101 1111  DF(16진수)
+CString ToUpper(CString s)   // 소문자 ==> 대문자   xx1x xxxx ==> xx0x xxxx
+							 //					   1101 1111 DF(16진수)(&)
 {
 	CString t;
 	for (int i = 0; i < s.GetLength(); i++)
@@ -168,8 +170,8 @@ CString ToUpper(CString s)  // 소문자 ==> 대문자  xx1x xxxx ==> xx0x xxxx
 	return t;
 }
 
-CString ToLower(CString s)  // 대문자 ==> 소문자  xx0x xxxx ==> xx1x xxxx
-											  // 0010 0000  20h ( | ) 연산
+CString ToLower(CString s)   // 대문자 ==> 소문자   xx0x xxxx ==> xx1x xxxx
+							 //					   0010 0000 20(16진수)(|)
 {
 	CString t;
 	for (int i = 0; i < s.GetLength(); i++)
@@ -182,16 +184,15 @@ CString ToLower(CString s)  // 대문자 ==> 소문자  xx0x xxxx ==> xx1x xxxx
 }
 
 int flag = 0;
-
-void CMFCTest01Dlg::TestFunc()  // Button1 Clicked
+void CMFCTest01Dlg::TestFunc() // Button1 Clicked
 {
-	if (flag == 0)  // 첫번째 클릭
-	{  
-		//((CStatic*)GetDlgItem(IDC_STATIC))->SetWindowTextW(L"안녕하세요");
-		//btnTest.SetWindowTextW(L"안녕하세요");
-		char* s1 = "문자열 예시";
-		WCHAR* s2 = L"Wide String Sample";
-		CString str = L"문자열 예시";;
+	if(flag == 0) // 첫번째 클릭
+	{
+		//((CStatic*)GetDlgItem(IDC_STATIC))->SetWindowTextW(L"안녕하세요!");
+		//btnTest.SetWindowTextW(L"안녕하세요!");
+		//char* s1 = "문자열 예시";
+		//WCHAR* s2 = L"WIDE String sample";
+		CString str = L"문자열 예시";
 		((CEdit*)(GetDlgItem(IDC_EDIT1)))->GetWindowTextW(str);
 		//Memo.GetWindowTextW(str);
 		str = ToUpper(str);
@@ -199,23 +200,22 @@ void CMFCTest01Dlg::TestFunc()  // Button1 Clicked
 
 		flag = 1;
 	}
-	else if (flag == 1)  // 두번째 클릭 
-	{  
+	else if(flag == 1) // 두번째 클릭
+	{
 		//((CStatic*)GetDlgItem(IDC_STATIC))->SetWindowTextW(L"Hello");
 		//btnTest.SetWindowTextW(L"Hello");
-		CString str = L"문자열 예시";;
+		CString str = L"문자열 예시";
 		((CEdit*)(GetDlgItem(IDC_EDIT1)))->GetWindowTextW(str);
 		//Memo.GetWindowTextW(str);
 		str = ToLower(str);
 		Memo.SetWindowTextW(str);
-
+		
 		flag = 0;
 	}
 }
 
 
-
-void CMFCTest01Dlg::OnChangeEdit1()
+void CMFCTest01Dlg::OnEnChangeEdit1()
 {
 	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
 	// CDialogEx::OnInitDialog() 함수를 재지정 
