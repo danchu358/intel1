@@ -32,7 +32,7 @@ namespace ConsoleApp1
         void func3()
         {
             var a = 20;
-            Console.WriteLine($"var a = {a}");
+            Console.WriteLine($"ASCII code '1' = \x31 \u0031");
             a = 10;
             Console.WriteLine($"var a = {a}");
             Object o = a;
@@ -66,7 +66,7 @@ namespace ConsoleApp1
             //Console.WriteLine($"(보간)int type의 크기는 {sizeof(int)}(byte). 범위 {int.MinValue}, {int.MaxValue}");
             //func1();
             //func2();
-            //func3();
+            func3();
             func4();
             Console.ReadKey();
         }
