@@ -42,3 +42,5 @@
 /WinFormCS/WinFormsTest02_DBM/bin/Debug
 /WinFormCS/WinFormsTest02_DBM/obj/Debug
 /WinFormCS/WinFormsTest02_DBM/Properties
+/WinFormCS/WinFormsTest02_DBM/TestDB.mdf
+/WinFormCS/WinFormsTest02_DBM/TestDB_log.ldf
