@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.파일ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuNew = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,6 +37,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.편집ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSql1 = new System.Windows.Forms.ToolStripMenuItem();
             this.보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.도움말ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,9 +47,13 @@
             this.sbLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tbSQL = new System.Windows.Forms.TextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.menuSql1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dataView = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.popupMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFont = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -55,6 +61,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataView)).BeginInit();
+            this.popupMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -98,8 +105,9 @@
             // menuSave
             // 
             this.menuSave.Name = "menuSave";
-            this.menuSave.Size = new System.Drawing.Size(103, 22);
+            this.menuSave.Size = new System.Drawing.Size(180, 22);
             this.menuSave.Text = "Save";
+            this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -120,8 +128,17 @@
             this.편집ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.편집ToolStripMenuItem.Text = "동작";
             // 
+            // menuSql1
+            // 
+            this.menuSql1.Name = "menuSql1";
+            this.menuSql1.Size = new System.Drawing.Size(180, 22);
+            this.menuSql1.Text = "SQL 실행 1";
+            this.menuSql1.Click += new System.EventHandler(this.menuRun_Click);
+            // 
             // 보기ToolStripMenuItem
             // 
+            this.보기ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFont});
             this.보기ToolStripMenuItem.Name = "보기ToolStripMenuItem";
             this.보기ToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.보기ToolStripMenuItem.Text = "보기";
@@ -195,6 +212,7 @@
             // tbSQL
             // 
             this.tbSQL.AcceptsReturn = true;
+            this.tbSQL.ContextMenuStrip = this.popupMenu;
             this.tbSQL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbSQL.Location = new System.Drawing.Point(0, 0);
             this.tbSQL.Multiline = true;
@@ -202,20 +220,6 @@
             this.tbSQL.Size = new System.Drawing.Size(800, 139);
             this.tbSQL.TabIndex = 0;
             this.tbSQL.TextChanged += new System.EventHandler(this.tbSQL_TextChanged);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.Filter = "MDF 파일|*.mdf";
-            this.openFileDialog1.ValidateNames = false;
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // menuSql1
-            // 
-            this.menuSql1.Name = "menuSql1";
-            this.menuSql1.Size = new System.Drawing.Size(180, 22);
-            this.menuSql1.Text = "SQL 실행 1";
-            this.menuSql1.Click += new System.EventHandler(this.menuSql1_Click);
             // 
             // dataView
             // 
@@ -226,6 +230,34 @@
             this.dataView.RowTemplate.Height = 23;
             this.dataView.Size = new System.Drawing.Size(800, 261);
             this.dataView.TabIndex = 0;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "MDF 파일|*.mdf";
+            this.openFileDialog1.ValidateNames = false;
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // popupMenu
+            // 
+            this.popupMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuRun});
+            this.popupMenu.Name = "popupMenu";
+            this.popupMenu.Size = new System.Drawing.Size(125, 26);
+            // 
+            // menuRun
+            // 
+            this.menuRun.Name = "menuRun";
+            this.menuRun.Size = new System.Drawing.Size(124, 22);
+            this.menuRun.Text = "SQL 실행";
+            this.menuRun.Click += new System.EventHandler(this.menuRun_Click);
+            // 
+            // menuFont
+            // 
+            this.menuFont.Name = "menuFont";
+            this.menuFont.Size = new System.Drawing.Size(180, 22);
+            this.menuFont.Text = "글꼴";
+            this.menuFont.Click += new System.EventHandler(this.menuFont_Click);
             // 
             // frmDBM
             // 
@@ -248,6 +280,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataView)).EndInit();
+            this.popupMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,6 +308,11 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolStripMenuItem menuSql1;
         private System.Windows.Forms.DataGridView dataView;
+        private System.Windows.Forms.ContextMenuStrip popupMenu;
+        private System.Windows.Forms.ToolStripMenuItem menuRun;
+        private System.Windows.Forms.ToolStripMenuItem menuFont;
+        private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,44 +59,106 @@ namespace WinFormsTest02_DBM
             }
         }
 
-        string[] RunSql(string sql)  // Select vs Others
+        ArrayList ColName = new ArrayList();  // 필드 이름 List
+        List<object[]> RunSql(string sql)  // Select vs Others
         {
+            List<object[]> result = new List<object[]>();
             sqlCom.CommandText = sql;
-
-            if (sql.Trim().ToLower().Substring(0, 6) == "select")
+            try
             {
-                SqlDataReader sr = sqlCom.ExecuteReader();
-
-                for (int i = 0; i < sr.FieldCount; i++)
+                if (sql.Trim().ToLower().Substring(0, 6) == "select")
                 {
-                    string colName = sr.GetName(i);
-                    dataView.Columns.Add(colName, colName);
+                    SqlDataReader sr = sqlCom.ExecuteReader();
+                    ColName.Clear();
+                    for (int i = 0; i < sr.FieldCount; i++)
+                    {
+                        ColName.Add(sr.GetName(i));
+                    }
+
+                    for (; sr.Read();)
+                    {
+                        object[] oarr = new object[sr.FieldCount];
+                        sr.GetValues(oarr);
+                        result.Add(oarr);
+
+                        //string str = "";
+
+                        //for (int i = 0; i < sr.FieldCount; i++)
+                        //{
+                        //    object o = sr.GetValue(i);
+                        //    if (i == 0) str = $"{o}";
+                        //    else        str += $",{o}";
+                        //}
+                    }
+                    sr.Close();
                 }
+                else
+                {
+                    int n = sqlCom.ExecuteNonQuery();
+                }
+                sbLabel3.Text = "OK";
+                return result;
             }
-
-            SqlDataReader sr = sqlCom.ExecuteReader();
-
-            for (int i = 0; i < sr.FieldCount; i++)
+            catch(Exception ex) 
             {
-                string colName = sr.GetName(i);
+                //MessageBox.Show(ex.Message);
+                sbLabel3.AutoSize = true;
+                sbLabel3.Text = ex.Message;
+                return null;
+            }
+        }
+
+        private void menuRun_Click(object sender, EventArgs e)
+        {
+            string sql = tbSQL.SelectedText;
+            if(sql == "") sql = tbSQL.Text;
+
+            List<object[]> r = RunSql(sql);
+            if (r == null) return;
+
+            dataView.Rows.Clear();
+            dataView.Columns.Clear();
+
+            for (int i = 0; i < ColName.Count; i++)
+            {
+                string colName = (string)ColName[i];
                 dataView.Columns.Add(colName, colName);
             }
 
-            for (; sr.Read();)
+            for (int i = 0; i < r.Count; i++)
             {
                 int nRow = dataView.Rows.Add();
+                object[] o = r[i];
 
-                for (int i = 0; i < sr.FieldCount; i++)
+                for (int j = 0; j < ColName.Count; j++)
                 {
-                    object o = sr.GetValue(i);
-                    dataView.Rows[nRow].Cells[i].Value = o;
+                    dataView.Rows[nRow].Cells[j].Value = o[j];
                 }
             }
         }
 
-        private void menuSql1_Click(object sender, EventArgs e)
+        private void menuFont_Click(object sender, EventArgs e)
         {
-            string sql = "Select * from person";
+            if (fontDialog1.ShowDialog() == DialogResult.OK)
+            {
+                tbSQL.Font = fontDialog1.Font;
+                sbLabel2.Text = tbSQL.Font.Name;
+            }
+        }
+
+        private void menuSave_Click(object sender, EventArgs e)
+        {
+            DialogResult ret = saveFileDialog1.ShowDialog();
+
+            if (ret == DialogResult.OK)
+            {
+                string fn = saveFileDialog1.FileName;
+                FileStream fs = new FileStream(fn, FileMode.Create);
+                StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8);
+                sw.Write(tbSQL.Text);
+                sw.Close();
+                fs.Close();
+            }
         }
     }
 }
