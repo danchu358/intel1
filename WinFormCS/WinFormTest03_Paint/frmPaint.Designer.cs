@@ -39,13 +39,14 @@
             this.홈ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDraw = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLine = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuCircle = new System.Windows.Forms.ToolStripMenuItem();
             this.menuRect = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuCircle = new System.Windows.Forms.ToolStripMenuItem();
             this.menuText = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuErase = new System.Windows.Forms.ToolStripMenuItem();
             this.보기ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.ㄷToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.sbLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.sbLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,6 +54,7 @@
             this.sbLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Canvas = new System.Windows.Forms.PictureBox();
+            this.menuTestSine = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
@@ -63,7 +65,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.파일ToolStripMenuItem,
             this.홈ToolStripMenuItem,
-            this.보기ToolStripMenuItem});
+            this.보기ToolStripMenuItem,
+            this.ㄷToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -91,8 +94,9 @@
             // menuOpen
             // 
             this.menuOpen.Name = "menuOpen";
-            this.menuOpen.Size = new System.Drawing.Size(138, 22);
+            this.menuOpen.Size = new System.Drawing.Size(180, 22);
             this.menuOpen.Text = "열기";
+            this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
             // menuSave
             // 
@@ -128,35 +132,35 @@
             // menuDraw
             // 
             this.menuDraw.Name = "menuDraw";
-            this.menuDraw.Size = new System.Drawing.Size(180, 22);
+            this.menuDraw.Size = new System.Drawing.Size(150, 22);
             this.menuDraw.Text = "자유도형";
             this.menuDraw.Click += new System.EventHandler(this.menuDraw_Click);
             // 
             // menuLine
             // 
             this.menuLine.Name = "menuLine";
-            this.menuLine.Size = new System.Drawing.Size(180, 22);
+            this.menuLine.Size = new System.Drawing.Size(150, 22);
             this.menuLine.Text = "선그리기";
             this.menuLine.Click += new System.EventHandler(this.menuLine_Click);
-            // 
-            // menuCircle
-            // 
-            this.menuCircle.Name = "menuCircle";
-            this.menuCircle.Size = new System.Drawing.Size(180, 22);
-            this.menuCircle.Text = "원그리기";
-            this.menuCircle.Click += new System.EventHandler(this.menuCircle_Click);
             // 
             // menuRect
             // 
             this.menuRect.Name = "menuRect";
-            this.menuRect.Size = new System.Drawing.Size(180, 22);
+            this.menuRect.Size = new System.Drawing.Size(150, 22);
             this.menuRect.Text = "사각형 그리기";
             this.menuRect.Click += new System.EventHandler(this.menuRect_Click);
+            // 
+            // menuCircle
+            // 
+            this.menuCircle.Name = "menuCircle";
+            this.menuCircle.Size = new System.Drawing.Size(150, 22);
+            this.menuCircle.Text = "원그리기";
+            this.menuCircle.Click += new System.EventHandler(this.menuCircle_Click);
             // 
             // menuText
             // 
             this.menuText.Name = "menuText";
-            this.menuText.Size = new System.Drawing.Size(180, 22);
+            this.menuText.Size = new System.Drawing.Size(150, 22);
             this.menuText.Text = "문자 입력";
             this.menuText.Click += new System.EventHandler(this.menuText_Click);
             // 
@@ -168,7 +172,7 @@
             // menuErase
             // 
             this.menuErase.Name = "menuErase";
-            this.menuErase.Size = new System.Drawing.Size(180, 22);
+            this.menuErase.Size = new System.Drawing.Size(150, 22);
             this.menuErase.Text = "모두 지우기";
             this.menuErase.Click += new System.EventHandler(this.menuErase_Click);
             // 
@@ -185,6 +189,14 @@
             this.menuColor.Name = "menuColor";
             this.menuColor.Size = new System.Drawing.Size(98, 22);
             this.menuColor.Text = "색상";
+            // 
+            // ㄷToolStripMenuItem
+            // 
+            this.ㄷToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuTestSine});
+            this.ㄷToolStripMenuItem.Name = "ㄷToolStripMenuItem";
+            this.ㄷToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.ㄷToolStripMenuItem.Text = "동작테스트";
             // 
             // statusStrip1
             // 
@@ -250,9 +262,17 @@
             this.Canvas.Size = new System.Drawing.Size(800, 402);
             this.Canvas.TabIndex = 2;
             this.Canvas.TabStop = false;
+            this.Canvas.Click += new System.EventHandler(this.Canvas_Click);
             this.Canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseDown);
             this.Canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseMove);
             this.Canvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseUp);
+            // 
+            // menuTestSine
+            // 
+            this.menuTestSine.Name = "menuTestSine";
+            this.menuTestSine.Size = new System.Drawing.Size(180, 22);
+            this.menuTestSine.Text = "Sine Graph";
+            this.menuTestSine.Click += new System.EventHandler(this.menuTestSine_Click);
             // 
             // frmPaint
             // 
@@ -265,6 +285,10 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmPaint";
             this.Text = "myPaint";
+            this.MaximizedBoundsChanged += new System.EventHandler(this.frmPaint_ResizeEnd);
+            this.MaximumSizeChanged += new System.EventHandler(this.frmPaint_ResizeEnd);
+            this.ResizeEnd += new System.EventHandler(this.frmPaint_ResizeEnd);
+            this.Resize += new System.EventHandler(this.frmPaint_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
@@ -302,6 +326,8 @@
         private System.Windows.Forms.ToolStripStatusLabel sbLabel2;
         private System.Windows.Forms.ToolStripStatusLabel sbLabel3;
         private System.Windows.Forms.ToolStripStatusLabel sbLabel4;
+        private System.Windows.Forms.ToolStripMenuItem ㄷToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuTestSine;
     }
 }
 
